@@ -7,6 +7,8 @@ if (isset($_REQUEST['project']) {
     $project = NULL;
 }
 
+$exportUrl = '/export.php?project=%s';
+
 $db = $registry['database'];
 ?>
 
@@ -17,11 +19,23 @@ $db = $registry['database'];
 <?php
 if (is_null($project)) {
     echo 'Error: no Project was choosen.<br/>';
+    $keys = array();
 } else {
+    printf('<p>Project: %s</p><br/>', $project);
     $keys = $db->getAllKeysByProject($project);
-    foreach ($key as $key) {
-        // TODO print all keys in a pretty table or with css layout
-    }
+}
+
+if (!empty($keys)) {
+    printf(
+        '<a href="%s">Export this project</a><br/>',
+        sprintf($exportUrl, $project);
+    );
+}
+?>
+<hr/>
+<?php
+foreach ( $keys as $key) {
+// TODO print all keys in a pretty table or with css layout
 }
 ?>
 </body>
