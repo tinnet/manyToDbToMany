@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * This is the interface all Database classes (found in Database/*.php)
+ * have to implement
+ */
 interface Loca_Database
 {
     /**
