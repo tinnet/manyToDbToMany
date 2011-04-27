@@ -10,7 +10,7 @@ class Loca_Parser_Csv extends Loca_Parser_Abstract {
 
     public function __construct($filename)
     {
-        $this->_handle = fopen($filename);
+        $this->_handle = fopen($filename, 'rb');
         $this->rewind();
     }
 
@@ -38,8 +38,10 @@ class Loca_Parser_Csv extends Loca_Parser_Abstract {
 
     protected function convertToAssoc($line)
     {
+        $result = array();
         foreach ($line as $key => $value) {
                 $result[$this->_headers[$key]] = $value;
         }
+        return $result;
     }
 }

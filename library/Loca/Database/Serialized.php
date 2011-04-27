@@ -38,6 +38,9 @@ class Loca_Database_Serialized implements Loca_Database
         $this->_dataPath = realpath($dbPath);
     }
 
+    /**
+     * @see Loca_Database::getAllProjects()
+     */
     public function getAllProjects() {
         $glob = glob($this->_dataPath . DIRECTORY_SEPARATOR . '*.db');
         if ($glob === FALSE) {
@@ -46,13 +49,22 @@ class Loca_Database_Serialized implements Loca_Database
         return $glob;
     }
 
+    /**
+     * @see Loca_Database::getAllKeysByProject()
+     */
     public function getAllKeysByProject($project)
     {
+        if (!file_exists($this->getFileNameByProject($project))) {
+            return array();
+        }
         $data = file_get_contents($this->getFileNameByProject($project));
         $keys = unserialize($data);
         return $keys;
     }
 
+    /**
+     * @see Loca_Database::getKeyByProjectAndName()
+     */
     public function getKeyByProjectAndName($project, $keyName)
     {
         $keys = $this->getAllKeysByProject($project);
@@ -64,14 +76,20 @@ class Loca_Database_Serialized implements Loca_Database
         return $keys[$keyName];
     }
 
+    /**
+     * @see Loca_Database::saveKeyToProject()
+     */
     public function saveKeyToProject($project, $key)
     {
         // FIXME race conditions with multiple users, maybe lock the file?
         $keys = $this->getAllKeysByProject($project);
-        $keys[$key['name']] = $key;
+        $keys[$key['keyname']] = $key;
         $this->storeProjectKeys($project, $keys);
     }
 
+    /**
+     * @see Loca_Database::saveKeysToProject()
+     */
     public function saveKeysToProject($project, $keys)
     {
         // FIXME race conditions with multiple users, maybe lock the file?
