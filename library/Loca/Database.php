@@ -1,12 +1,7 @@
 <?php
 
-interface Database
+interface Loca_Database
 {
-    /**
-     * @return boolean
-     */
-    protected function _createTables();
-
     /**
      * @return array
      */
@@ -18,4 +13,21 @@ interface Database
      */
     public function getAllKeysByProject($project);
 
+    /**
+     * @param string $project
+     * @param string $keyname
+     */
+    public function getKeyByProjectAndName($project, $keyName);
+
+    /**
+     * @param string $project
+     * @param array $key
+     */
+    public function saveKeyToProject($project, $key);
+
+    /**
+     * @param string $project
+     * @param array $keys
+     */
+    public function saveKeysToProject($project, $keys);
 }

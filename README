@@ -1,0 +1,14 @@
+WHAT TO DO
+
+* Tool das es erlaubt .csv und .xml (format 1) files hochzuladen
+* diese werden dann in eine Datenbank (z.b. sqlite) geschrieben
+* ein file = ein projekt
+* der benutzer kann sich dann pro projekt die hochgeladenen schlüssel anschauen
+* und das ganze wieder als xml (format 2) runterladen
+
+
+WHAT I WANT TO SEE
+
+* den XML Reader (CSV ist schon dabei als beispiel)
+* die queries und datenbankstruktur
+* den XML Writer

@@ -3,9 +3,6 @@ require_once dirname(__FILE__) . '/Bootstrap.php';
 
 $db = $registry['database'];
 
-// TODO get project list from database
-$projects = array(); // $db->get???
-
 $viewUrl = '/viewProject.php?project=%s';
 $uploadUrl = '/upload.php';
 
@@ -16,7 +13,7 @@ $uploadUrl = '/upload.php';
 
 <p>Select a project to view:</p>
 <?php
-foreach ($projects as $project) {
+foreach ($db->getAllProjects() as $project) {
     printf('<a href="%s">%s</a>', sprintf($viewUrl, $project), $project);
     echo '<br />';
 }

@@ -1,7 +1,8 @@
 <?php
-require_once './Bootstrap.php'
 
-if (isset($_REQUEST['project']) {
+require_once dirname(__FILE__) . '/Bootstrap.php';
+
+if (isset($_REQUEST['project'])) {
     $project = $_REQUEST['project'];
 } else {
     $project = NULL;
@@ -28,14 +29,14 @@ if (is_null($project)) {
 if (!empty($keys)) {
     printf(
         '<a href="%s">Export this project</a><br/>',
-        sprintf($exportUrl, $project);
+        sprintf($exportUrl, $project)
     );
 }
 ?>
 <hr/>
 <?php
 foreach ( $keys as $key) {
-// TODO print all keys in a pretty table or with css layout
+// TODO print all keys in a table or with pretty css layouting
 }
 ?>
 </body>
