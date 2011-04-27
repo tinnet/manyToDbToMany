@@ -27,7 +27,16 @@ class Loca_Parser_Csv extends Loca_Parser_Abstract {
         if ($line === FALSE) {
             return NULL;
         }
-        return $this->convertToAssoc($line);
+        $keyAssoc = $this->convertToAssoc($line);
+
+        $result['keyname'] = $keyAssoc['keyname'];
+        unset($keyAssoc['keyname']);
+        $result['translations'] = array();
+
+        foreach ($keyAssoc as $k => $v) {
+            $result['translations'][$k] = $v;
+        }
+        return $result;
     }
 
     public function rewind()

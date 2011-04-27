@@ -16,4 +16,8 @@ $exporter = $registry['exporter'];
 // maybe the $exporter could get them one by one from the $db?
 $keys = $db->getAllKeysByProject($project);
 
-echo $exporter->export($keys);
+foreach ($exporter->getHeaders() as $header) {
+    header($header, TRUE);
+}
+
+echo $exporter->export($project, $keys);

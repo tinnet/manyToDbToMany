@@ -12,6 +12,9 @@
  */
 class Loca_Database_Serialized implements Loca_Database
 {
+    /**
+     * @var string
+     */
     protected $_dataPath;
 
     public function __construct($config)
@@ -45,6 +48,9 @@ class Loca_Database_Serialized implements Loca_Database
         $glob = glob($this->_dataPath . DIRECTORY_SEPARATOR . '*.db');
         if ($glob === FALSE) {
             return array();
+        }
+        foreach ($glob as $k => $v) {
+            $glob[$k] = basename($v, '.db');
         }
         return $glob;
     }

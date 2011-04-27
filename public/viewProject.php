@@ -34,10 +34,21 @@ if (!empty($keys)) {
 }
 ?>
 <hr/>
+<p>keys:</p>
+<p>
 <?php
-foreach ( $keys as $key) {
-// TODO print all keys in a table or with pretty css layouting
+foreach ($keys as $key) {
+    // TODO print all keys in a table or with pretty css layouting
+    foreach ($key as $k => $v) {
+        if (is_array($v)) {
+            echo $k, ': ', var_export($v, true),'<br/>';
+        } else {
+            echo $k, ': ', $v,'<br/>';
+        }
+    }
+    echo '<br/><br/>';
 }
 ?>
+</p>
 </body>
 </html>

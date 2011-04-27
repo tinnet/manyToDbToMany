@@ -8,12 +8,17 @@ class Loca_Exporter_Json {
         $exported = array($project => array());
 
         foreach ($keys as $key) {
-            $exported[$project][$key['name']] = array();
+            $exported[$project][$key['keyname']] = array();
             foreach ($key['translations'] as $lang => $content) {
-                $exported[$project][$key['name']][$lang] = $content;
+                $exported[$project][$key['keyname']][$lang] = $content;
             }
         }
         
         return json_encode($exported);
+    }
+
+    public function getHeaders()
+    {
+        return array('Content-type: application/json');
     }
 }
